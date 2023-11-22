@@ -18,7 +18,7 @@ public class Car_Rental_System extends Application {
         // Set the main page as the root of the scene
         Scene scene = new Scene(root, 900, 600);
 
-        // Set the controller and the primary stage
+        // Set the controller and the primary stage for the main page
         Car_Rental_Controller controller = fxmlLoader.getController();
         controller.setPrimaryStage(stage);
 
@@ -31,3 +31,4 @@ public class Car_Rental_System extends Application {
         launch();
     }
 }
+
