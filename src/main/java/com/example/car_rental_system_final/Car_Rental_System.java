@@ -12,17 +12,17 @@ public class Car_Rental_System extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("main_page.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Sign_in.fxml"));
         Parent root = fxmlLoader.load();
 
         // Set the main page as the root of the scene
         Scene scene = new Scene(root, 900, 600);
 
         // Set the controller and the primary stage for the main page
-        Car_Rental_Controller controller = fxmlLoader.getController();
+        Sign_in_Controller controller = fxmlLoader.getController();
         controller.setPrimaryStage(stage);
 
-        stage.setTitle("Car Rental System");
+        stage.setTitle("Sign In Page");
         stage.setScene(scene);
         stage.show();
     }

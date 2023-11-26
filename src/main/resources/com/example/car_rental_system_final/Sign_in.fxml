@@ -2,17 +2,17 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.car_rental_system_final.Sign_in_Controller">
    <children>
       <TextField layoutX="350.0" layoutY="151.0" prefHeight="26.0" prefWidth="219.0" promptText="Email or Phone Number" />
-      <TextField layoutX="351.0" layoutY="197.0" prefHeight="26.0" prefWidth="219.0" promptText="Password" />
       <Button layoutX="351.0" layoutY="249.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="219.0" text="Sign in" />
       <Hyperlink fx:id="SignUp" layoutX="525.0" layoutY="309.0" onAction="#onClickLinkSignUp" text="Sign Up" />
       <Text layoutX="437.0" layoutY="326.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First time here?" />
+      <PasswordField layoutX="351.0" layoutY="200.0" prefHeight="26.0" prefWidth="219.0" promptText="Password" />
    </children>
 </AnchorPane>
