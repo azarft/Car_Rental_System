@@ -6,6 +6,7 @@ public class TaskDAO {
     private static Connection conn;
     private static final String dbURL = "jdbc:postgresql://localhost:5432/carRent";
     private static final String username = "postgres";
+
     private static final String password = "1234";
     public static String ConnectToDatabase() throws SQLException {
 
