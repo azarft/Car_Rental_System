@@ -6,11 +6,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.car_rental_system_final.Sign_in_Controller">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.car_rental_system_final.Sign_in_Controller">
    <children>
-      <TextField layoutX="350.0" layoutY="151.0" prefHeight="26.0" prefWidth="219.0" promptText="Email or Phone Number" />
-      <TextField layoutX="351.0" layoutY="197.0" prefHeight="26.0" prefWidth="219.0" promptText="Password" />
+      <TextField fx:id="user_email" layoutX="350.0" layoutY="151.0" prefHeight="26.0" prefWidth="219.0" promptText="Email or Phone Number" />
+      <TextField fx:id="user_id" layoutX="351.0" layoutY="197.0" prefHeight="26.0" prefWidth="219.0" promptText="Password" />
       <Button layoutX="351.0" layoutY="249.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="219.0" text="Sign in" />
       <Hyperlink fx:id="SignUp" layoutX="525.0" layoutY="309.0" onAction="#onClickLinkSignUp" text="Sign Up" />
       <Text layoutX="437.0" layoutY="326.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First time here?" />
