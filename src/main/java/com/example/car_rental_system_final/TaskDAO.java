@@ -23,7 +23,7 @@ public class TaskDAO {
                 " \"name\", surname, email, phone, address, password)" +
                 " VALUES (?, ?, ?, ?, ?, ?);";
 
-        try(PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
+        try(PreparedStatement stmt = conn.prepareStatement(sql)){
 
             stmt.setString(1, user.getUser_name());
             stmt.setString(2, user.getUser_surname());
@@ -43,5 +43,21 @@ public class TaskDAO {
         }
 
         return 1;
+    }
+    public static boolean isUserExist(User user) {
+        String sql = "SELECT * FROM \"user\" WHERE (email = ? OR phone = ?) AND password = ?";
+
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, user.getUser_email());
+            stmt.setString(2,  user.getUser_phone());
+            stmt.setString(3,  user.getPassword());
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                return rs.next();
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
     }
 }
