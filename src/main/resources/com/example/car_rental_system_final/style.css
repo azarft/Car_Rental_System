@@ -1,0 +1,15 @@
+.error-textfield {
+    -fx-border-color: red;
+    -fx-border-width: 1.5px;
+}
+
+.error-datepicker {
+    -fx-border-color: red;
+    -fx-border-width: 1.5px;
+}
+
+error-passwordfield {
+    -fx-border-color: red;
+    -fx-border-width: 1.5px;
+}
+
