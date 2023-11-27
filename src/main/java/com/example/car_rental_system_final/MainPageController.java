@@ -20,11 +20,10 @@ public class MainPageController {
     @FXML
     private Label Price;
 
-
     @FXML
     public void initialize() {
         // Set the image programmatically
-        Image image = new Image("file:/C:/Users/user/IdeaProjects/Car_Rental_System_Final/logo.png");
+        Image image = new Image("logo.png");
         Logo.setImage(image);
 
 

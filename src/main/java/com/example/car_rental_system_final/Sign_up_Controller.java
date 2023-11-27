@@ -4,7 +4,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -12,8 +14,12 @@ import java.time.LocalDate;
 
 public class Sign_up_Controller {
 
+    @FXML
+    private AnchorPane signUp1;
+
+    @FXML
+    private AnchorPane signUp2;
     private Stage primaryStage;
-    // Set the primary stage
     public void setPrimaryStage(Stage primaryStage) {
         this.primaryStage = primaryStage;
     }
@@ -46,9 +52,41 @@ public class Sign_up_Controller {
     private Circle Page2;
     @FXML
     private Label CautionLabel;
+    @FXML
+    private TextField Passport;
+    @FXML
+    private TextField DriverLicence;
+    @FXML
+    private CheckBox A;
+    @FXML
+    private CheckBox A1;
+    @FXML
+    private CheckBox B;
+    @FXML
+    private CheckBox B1;
+    @FXML
+    private CheckBox BE;
+    @FXML
+    private CheckBox C;
+    @FXML
+    private CheckBox C1;
+    @FXML
+    private CheckBox C1E;
+    @FXML
+    private CheckBox CE;
+    @FXML
+    private CheckBox D;
+    @FXML
+    private CheckBox DE;
+    @FXML
+    private CheckBox D1;
+    @FXML
+    private CheckBox D1E;
+    @FXML
+    private CheckBox T;
 
     @FXML
-    public void onClickSignUpButton(){
+    public void onClickSignUpButton() {
         if (NameField.getText().isEmpty() ||
                 EmailField.getText().isEmpty() ||
                 PhoneField.getText().isEmpty() ||
@@ -64,12 +102,12 @@ public class Sign_up_Controller {
     }
 
     @FXML
-    public void onClickCirclePage1(){
+    public void onClickCirclePage1() {
         navigateToSignUp();
     }
 
     @FXML
-    public void onClickCirclePage2(){
+    public void onClickCirclePage2() {
         navigateToSignUp2();
     }
 
@@ -85,44 +123,20 @@ public class Sign_up_Controller {
 
             // Set the sign-in page as the root of the existing scene
             primaryStage.getScene().setRoot(signInPage);
-            primaryStage.setTitle("Sign in page");
+            primaryStage.setTitle("Sign In Page");
         } catch (IOException e) {
             e.printStackTrace(); // Handle the exception appropriately
         }
     }
-
-    private void navigateToSignUp2() {
-        try {
-            // Load the FXML file for the sign-up page 2
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Sign_up2.fxml"));
-            Parent signUp2Page = fxmlLoader.load();
-
-            Sign_up_Controller signUp2Controller = fxmlLoader.getController();
-            signUp2Controller.setPrimaryStage(primaryStage);
-
-            // Set the sign-up page 2 as the root of the existing scene
-            primaryStage.getScene().setRoot(signUp2Page);
-            primaryStage.setTitle("Sign up page");
-        } catch (IOException e) {
-            e.printStackTrace(); // Add more detailed error handling
-        }
-    }
-
     private void navigateToSignUp() {
-        try {
-            // Load the FXML file for the sign-in page
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Sign_up.fxml"));
-            Parent signUpPage = fxmlLoader.load();
-
-            Sign_up_Controller signUpController = fxmlLoader.getController();
-            signUpController.setPrimaryStage(primaryStage);
-
-            // Set the sign-up page as the root of the existing scene
-            primaryStage.getScene().setRoot(signUpPage);
-            primaryStage.setTitle("Sign in page");
-        } catch (IOException e) {
-            e.printStackTrace(); // Handle the exception appropriately
-        }
+        primaryStage.setTitle("Sign Up Page");
+        signUp1.setVisible(true);
+        signUp2.setVisible(false);
+    }
+    private void navigateToSignUp2() {
+        signUp1.setVisible(false);
+        signUp2.setVisible(true);
+        primaryStage.setTitle("Sign Up Page2");
     }
 
     private void navigateToMainPage(){
