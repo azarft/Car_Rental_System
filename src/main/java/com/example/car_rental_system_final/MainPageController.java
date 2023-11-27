@@ -23,7 +23,7 @@ public class MainPageController {
     @FXML
     public void initialize() {
         // Set the image programmatically
-        Image image = new Image("logo.png");
+        Image image = new Image(getClass().getResource("/images/logo.png").toExternalForm());
         Logo.setImage(image);
 
 

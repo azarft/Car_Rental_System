@@ -17,7 +17,7 @@
 <AnchorPane prefHeight="600.0" prefWidth="900.0" stylesheets="@style.css.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.car_rental_system_final.Sign_up_Controller">
    
    <children>
-      <AnchorPane fx:id="signUp1" layoutX="175.0" layoutY="41.0" prefHeight="534.0" prefWidth="549.0" visible="false">
+      <AnchorPane fx:id="signUp1" layoutX="175.0" layoutY="41.0" prefHeight="534.0" prefWidth="549.0">
          <children>
             <TextField fx:id="NameField" layoutX="165.0" layoutY="70.0" prefHeight="26.0" prefWidth="219.0" promptText="Name" stylesheets="@style.css" />
             <TextField fx:id="EmailField" layoutX="165.0" layoutY="366.0" prefHeight="26.0" prefWidth="219.0" promptText="Email" stylesheets="@style.css" />
@@ -38,7 +38,7 @@
             <Circle fx:id="Page1" fill="WHITE" layoutX="287.0" layoutY="36.0" onMouseClicked="#onClickCirclePage2" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="signUp2" layoutX="175.0" layoutY="51.0" prefHeight="534.0" prefWidth="549.0">
+      <AnchorPane fx:id="signUp2" layoutX="175.0" layoutY="51.0" prefHeight="534.0" prefWidth="549.0" visible="false">
          <children>
             <TextField fx:id="Passport" layoutX="165.0" layoutY="310.0" prefHeight="26.0" prefWidth="219.0" promptText="Passport" />
             <TextField fx:id="DriverLicence" layoutX="165.0" layoutY="357.0" prefHeight="26.0" prefWidth="219.0" promptText="Driver Licence" />
