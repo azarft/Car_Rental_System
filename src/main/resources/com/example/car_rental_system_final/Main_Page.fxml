@@ -4,6 +4,8 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
@@ -29,5 +31,12 @@
       <Text fill="#7b7b7b" layoutX="43.0" layoutY="477.0" strokeMiterLimit="9.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Price" wrappingWidth="49.423828125" />
       <Text layoutX="51.0" layoutY="530.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Max. " />
       <Label fx:id="Price" layoutX="81.0" layoutY="517.0" prefHeight="18.0" prefWidth="45.0" text="\$0.00" />
+      <TableView fx:id="tableView" layoutX="232.0" layoutY="32.0" prefHeight="542.0" prefWidth="357.0">
+        <columns>
+          <TableColumn fx:id="brandColumn" prefWidth="132.0" text="Brand" />
+          <TableColumn fx:id="typeColumn" prefWidth="104.79998779296875" text="Type" />
+            <TableColumn fx:id="priceColumn" prefWidth="119.20004272460938" text="Price" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>

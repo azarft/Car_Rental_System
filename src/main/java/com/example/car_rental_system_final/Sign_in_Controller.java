@@ -13,6 +13,14 @@ import java.io.IOException;
 
 public class Sign_in_Controller {
 
+    @FXML
+    private Button signIn;
+
+    @FXML
+    public void onClickSignInButton(){
+        navigateToMainPage();
+    }
+
     private Stage primaryStage;
 
     // Set the primary stage
@@ -49,6 +57,20 @@ public class Sign_in_Controller {
             // Set the sign-up page as the root of the existing scene
             primaryStage.getScene().setRoot(signUpPage);
             primaryStage.setTitle("Sign in page");
+        } catch (IOException e) {
+            e.printStackTrace(); // Handle the exception appropriately
+        }
+    }
+
+    private void navigateToMainPage(){
+        try {
+            // Load the FXML file for the sign-in page
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Main_Page.fxml"));
+            Parent mainPage = fxmlLoader.load();
+
+            // Set the sign-up page as the root of the existing scene
+            primaryStage.getScene().setRoot(mainPage);
+            primaryStage.setTitle("Main page");
         } catch (IOException e) {
             e.printStackTrace(); // Handle the exception appropriately
         }
