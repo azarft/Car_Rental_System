@@ -22,7 +22,7 @@ public class CarDB {
     public List<Car> getAllCars() throws SQLException {
         List<Car> cars = new ArrayList<>();
         try (Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD)) {
-            String sql = "SELECT * FROM car";
+            String sql = "select * from car c join images i on c.id = i.car_id";
             try (PreparedStatement statement = connection.prepareStatement(sql)) {
                 try (ResultSet resultSet = statement.executeQuery()) {
                     while (resultSet.next()) {
@@ -43,7 +43,7 @@ public class CarDB {
         car.setBrand(resultSet.getString("brand"));
         car.setVolume(resultSet.getInt("volume"));
         car.setCapacity(resultSet.getInt("capacity"));
+        car.setImagePath(resultSet.getString("image_path"));
         return car;
     }
-
 }

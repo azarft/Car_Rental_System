@@ -14,7 +14,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" stylesheets="@style.css.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.car_rental_system_final.Sign_up_Controller">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.car_rental_system_final.Sign_up_Controller">
    
    <children>
       <AnchorPane fx:id="signUp1" layoutX="175.0" layoutY="41.0" prefHeight="534.0" prefWidth="549.0">

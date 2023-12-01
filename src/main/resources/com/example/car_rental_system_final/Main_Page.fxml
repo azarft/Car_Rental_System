@@ -8,6 +8,8 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.car_rental_system_final.MainPageController">
@@ -31,12 +33,32 @@
       <Text fill="#7b7b7b" layoutX="43.0" layoutY="477.0" strokeMiterLimit="9.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Price" wrappingWidth="49.423828125" />
       <Text layoutX="51.0" layoutY="530.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Max. " />
       <Label fx:id="Price" layoutX="81.0" layoutY="517.0" prefHeight="18.0" prefWidth="45.0" text="\$0.00" />
-      <TableView fx:id="tableView" layoutX="232.0" layoutY="32.0" prefHeight="542.0" prefWidth="357.0">
+      <TableView fx:id="tableView" layoutX="232.0" layoutY="32.0" prefHeight="542.0" prefWidth="357.0" onMouseClicked="#onSelectCar">
         <columns>
           <TableColumn fx:id="brandColumn" prefWidth="132.0" text="Brand" />
           <TableColumn fx:id="typeColumn" prefWidth="104.79998779296875" text="Type" />
-            <TableColumn fx:id="priceColumn" prefWidth="119.20004272460938" text="Price" />
+            <TableColumn fx:id="priceColumn" prefWidth="119.20004272460938" text="Price $" />
         </columns>
       </TableView>
+      <ImageView fx:id="CarImage" fitHeight="237.0" fitWidth="279.0" layoutX="607.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true" />
+      <Line endX="100.0" layoutX="739.0" layoutY="270.0" startX="-100.0" />
+      <Text layoutX="608.0" layoutY="341.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Brand" />
+      <Text layoutX="609.0" layoutY="381.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Type car" />
+      <Text layoutX="759.0" layoutY="341.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Color" />
+      <Text layoutX="759.0" layoutY="378.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Capacity" />
+      <Label fx:id="CarBrand" layoutX="675.0" layoutY="328.0" prefHeight="18.0" prefWidth="70.0" text="Label" />
+      <Label fx:id="CaType" layoutX="676.0" layoutY="368.0" prefHeight="18.0" prefWidth="69.0" text="Label" />
+      <Label fx:id="CarCapacity" layoutX="821.0" layoutY="365.0" prefHeight="18.0" prefWidth="75.0" text="Label" />
+      <Label fx:id="CarColor" layoutX="821.0" layoutY="328.0" prefHeight="18.0" prefWidth="75.0" text="Label" />
+      <Text layoutX="810.0" layoutY="378.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" />
+      <Text layoutX="810.0" layoutY="341.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" />
+      <Label fx:id="CarPrice" layoutX="755.0" layoutY="400.0" prefHeight="33.0" prefWidth="112.0" style="-fx-font-weight: bold;" text="Label" textFill="#00942f">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="Rent" layoutX="641.0" layoutY="486.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="201.0" style="-fx-background-color: green; -fx-font-weight: bold;" text="Rent Now" textFill="WHITE" />
+      <Text layoutX="610.0" layoutY="422.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Gasoline" />
+      <Label fx:id="CarVolume" layoutX="677.0" layoutY="409.0" prefHeight="18.0" prefWidth="69.0" text="Label" />
    </children>
 </AnchorPane>

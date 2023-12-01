@@ -10,7 +10,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 
+import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -36,6 +38,23 @@ public class MainPageController {
 
     @FXML
     private TableColumn<Car, Double> priceColumn;
+
+    @FXML
+    private Label CaType;
+    @FXML
+    private Label CarBrand;
+    @FXML
+    private Label CarColor;
+    @FXML
+    private Label CarCapacity;
+    @FXML
+    private ImageView CarImage;
+    @FXML
+    private Label CarVolume;
+    @FXML
+    private Label CarPrice;
+    @FXML
+    private Button Rent;
 
     private CarDB carDB;
 
@@ -72,6 +91,37 @@ public class MainPageController {
         // Fetch cars from the database and populate the TableView
         fetchCarsFromDatabase();
 
+    }
+
+    @FXML
+    private void onSelectCar(MouseEvent event) {
+        // Get the selected car from the TableView
+        Car selectedCar = tableView.getSelectionModel().getSelectedItem();
+
+        if (selectedCar != null) {
+            // Update labels with selected car information
+            CaType.setText(selectedCar.getType());
+            CarBrand.setText(selectedCar.getBrand());
+            CarColor.setText(selectedCar.getColor());
+            CarCapacity.setText(Integer.toString(selectedCar.getCapacity()));
+            CarVolume.setText(String.valueOf(selectedCar.getVolume() + "L"));
+            CarPrice.setText(String.valueOf(selectedCar.getPricePerDay() + "$ / day"));
+
+            // Add space after ')' in the image file name
+            String imageNameWithSpace = selectedCar.getImagePath().replace(")", ") ");
+
+            // Load and set the image for the selected car
+            String imagePath = "/images/" + imageNameWithSpace;
+            URL imageUrl = getClass().getResource(imagePath);
+
+            if (imageUrl != null) {
+                Image carImage = new Image(imageUrl.toExternalForm());
+                CarImage.setImage(carImage);
+            } else {
+                // Handle case where image resource is not found
+                System.out.println("Image resource not found: " + imagePath);
+            }
+        }
     }
 
     private void fetchCarsFromDatabase() {
