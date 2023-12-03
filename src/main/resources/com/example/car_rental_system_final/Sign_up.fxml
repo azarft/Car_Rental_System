@@ -7,35 +7,27 @@
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.car_rental_system_final.Sign_up_Controller">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.car_rental_system_final.Sign_up_Controller">
    
    <children>
       <AnchorPane fx:id="signUp1" layoutX="175.0" layoutY="41.0" prefHeight="534.0" prefWidth="549.0">
          <children>
             <TextField fx:id="NameField" layoutX="165.0" layoutY="70.0" prefHeight="26.0" prefWidth="219.0" promptText="Name" stylesheets="@style.css" />
-            <TextField fx:id="EmailField" layoutX="165.0" layoutY="366.0" prefHeight="26.0" prefWidth="219.0" promptText="Email" stylesheets="@style.css" />
-            <TextField fx:id="PhoneField" layoutX="165.0" layoutY="320.0" prefHeight="26.0" prefWidth="219.0" promptText="Phone number" stylesheets="@style.css" />
-            <TextField fx:id="AddressField" layoutX="165.0" layoutY="275.0" prefHeight="26.0" prefWidth="219.0" promptText="Address" stylesheets="@style.css" />
-            <RadioButton fx:id="MaleGender" layoutX="257.0" layoutY="205.0" mnemonicParsing="false" stylesheets="@style.css" text="Male">
-               <toggleGroup>
-                  <ToggleGroup fx:id="gender" />
-               </toggleGroup>
-            </RadioButton>
-            <RadioButton fx:id="FemaleGender" layoutX="322.0" layoutY="205.0" mnemonicParsing="false" stylesheets="@style.css" text="Female" toggleGroup="$gender" />
-            <Text layoutX="177.0" layoutY="218.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender" />
+            <TextField fx:id="EmailField" layoutX="165.0" layoutY="282.0" prefHeight="26.0" prefWidth="219.0" promptText="Email" stylesheets="@style.css" />
+            <TextField fx:id="PhoneField" layoutX="165.0" layoutY="240.0" prefHeight="26.0" prefWidth="219.0" promptText="Phone number" stylesheets="@style.css" />
+            <TextField fx:id="AddressField" layoutX="165.0" layoutY="198.0" prefHeight="26.0" prefWidth="219.0" promptText="Address" stylesheets="@style.css" />
             <DatePicker fx:id="BirthdayPick" layoutX="269.0" layoutY="152.0" prefHeight="26.0" prefWidth="117.0" stylesheets="@style.css" />
             <Text layoutX="168.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Birthday" />
-            <PasswordField fx:id="PasswordField" layoutX="165.0" layoutY="111.0" prefHeight="26.0" prefWidth="219.0" promptText="Password" stylesheets="@style.css" />
-            <PasswordField fx:id="ConfirmPassword" layoutX="165.0" layoutY="233.0" prefHeight="26.0" prefWidth="219.0" promptText="Confirm Password" stylesheets="@style.css" />
+            <PasswordField fx:id="PasswordField" layoutX="165.0" layoutY="324.0" prefHeight="26.0" prefWidth="219.0" promptText="Password" stylesheets="@style.css" />
+            <PasswordField fx:id="ConfirmPassword" layoutX="165.0" layoutY="364.0" prefHeight="26.0" prefWidth="219.0" promptText="Confirm Password" stylesheets="@style.css" />
             <Circle fx:id="Page1" fill="DODGERBLUE" layoutX="263.0" layoutY="36.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
             <Circle fx:id="Page2" fill="WHITE" layoutX="287.0" layoutY="36.0" onMouseClicked="#onClickCirclePage2" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
+            <TextField fx:id="SurnameField" layoutX="165.0" layoutY="111.0" prefHeight="26.0" prefWidth="219.0" promptText="Surname" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="signUp2" layoutX="175.0" layoutY="51.0" prefHeight="534.0" prefWidth="549.0" visible="false">

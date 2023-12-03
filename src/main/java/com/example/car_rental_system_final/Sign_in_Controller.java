@@ -41,8 +41,19 @@ public class Sign_in_Controller {
 
     @FXML
     private void onClickButtonSignIn(){
-        String login = LoginField.getText();
-        String password = PasswordField.getText();
+        User user = new User();
+        user.setUser_email(LoginField.getText());
+        user.setUser_phone(LoginField.getText());
+        user.setUser_password(PasswordField.getText());
+        boolean userExists = UserDB.isUserExist(user);
+
+        if (userExists) {
+            System.out.println("User in database");
+            navigateToMainPage();
+        } else {
+            System.out.println("Failed to find user");
+            // Add code for handling the failure to create a user
+        }
     }
     @FXML
     private void onClickLinkSignUp() {
