@@ -16,24 +16,24 @@
    <children>
       <ImageView fx:id="Logo" fitHeight="90.0" fitWidth="120.0" layoutX="49.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
       </ImageView>
-      <Button layoutX="41.0" layoutY="545.0" mnemonicParsing="false" text="Filter" />
+      <Button fx:id="Filter" layoutX="41.0" layoutY="545.0" mnemonicParsing="false" onAction="#onClickFilterButton" text="Filter" />
       <Text fill="#7b7b7b" layoutX="40.0" layoutY="124.0" strokeMiterLimit="9.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type" wrappingWidth="49.423828125" />
       <Text fill="#7b7b7b" layoutX="40.0" layoutY="330.0" strokeMiterLimit="9.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Capacity" wrappingWidth="49.423828125" />
-      <CheckBox layoutX="40.0" layoutY="138.0" mnemonicParsing="false" text="Sport" />
-      <CheckBox layoutX="40.0" layoutY="167.0" mnemonicParsing="false" text="SUV" />
-      <CheckBox layoutX="40.0" layoutY="194.0" mnemonicParsing="false" text="MPV" />
-      <CheckBox layoutX="40.0" layoutY="221.0" mnemonicParsing="false" text="Sedan" />
-      <CheckBox layoutX="40.0" layoutY="250.0" mnemonicParsing="false" text="Coupe" />
-      <CheckBox layoutX="40.0" layoutY="279.0" mnemonicParsing="false" text="Hatchback" />
-      <CheckBox layoutX="40.0" layoutY="345.0" mnemonicParsing="false" text="2 person" />
-      <CheckBox layoutX="40.0" layoutY="373.0" mnemonicParsing="false" text="4 person" />
-      <CheckBox layoutX="40.0" layoutY="400.0" mnemonicParsing="false" text="6 person" />
-      <CheckBox layoutX="40.0" layoutY="428.0" mnemonicParsing="false" text="8 or More" />
-      <Slider fx:id="PriceSlider" layoutX="40.0" layoutY="488.0" prefHeight="14.0" prefWidth="177.0" />
+      <CheckBox fx:id="TypeSport" layoutX="40.0" layoutY="138.0" mnemonicParsing="false" onAction="#onClickFilterButton" text="Sport" />
+      <CheckBox fx:id="TypeSUV" layoutX="40.0" layoutY="167.0" mnemonicParsing="false" onAction="#onClickFilterButton" text="SUV" />
+      <CheckBox fx:id="TypeMPV" layoutX="40.0" layoutY="194.0" mnemonicParsing="false" onAction="#onClickFilterButton" text="MPV" />
+      <CheckBox fx:id="TypeSedan" layoutX="40.0" layoutY="221.0" mnemonicParsing="false" onAction="#onClickFilterButton" text="Sedan" />
+      <CheckBox fx:id="TypeCoupe" layoutX="40.0" layoutY="250.0" mnemonicParsing="false" onAction="#onClickFilterButton" text="Coupe" />
+      <CheckBox fx:id="TypeHatchback" layoutX="40.0" layoutY="279.0" mnemonicParsing="false" onAction="#onClickFilterButton" text="Hatchback" />
+      <CheckBox fx:id="Capacity2Person" layoutX="40.0" layoutY="345.0" mnemonicParsing="false" onAction="#onClickFilterButton" text="2 person" />
+      <CheckBox fx:id="Capacity4Person" layoutX="40.0" layoutY="373.0" mnemonicParsing="false" onAction="#onClickFilterButton" text="4 person" />
+      <CheckBox fx:id="Capacity6Person" layoutX="40.0" layoutY="400.0" mnemonicParsing="false" onAction="#onClickFilterButton" text="6 person" />
+      <CheckBox fx:id="Capacity8PersonOrMore" layoutX="40.0" layoutY="428.0" mnemonicParsing="false" onAction="#onClickFilterButton" text="8 or More" />
+      <Slider fx:id="PriceSlider" layoutX="40.0" layoutY="488.0" onMouseClicked="#onClickFilterButton" prefHeight="14.0" prefWidth="177.0" />
       <Text fill="#7b7b7b" layoutX="43.0" layoutY="477.0" strokeMiterLimit="9.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Price" wrappingWidth="49.423828125" />
       <Text layoutX="51.0" layoutY="530.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Max. " />
-      <Label fx:id="Price" layoutX="81.0" layoutY="517.0" prefHeight="18.0" prefWidth="45.0" text="\$0.00" />
-      <TableView fx:id="tableView" layoutX="232.0" layoutY="32.0" prefHeight="542.0" prefWidth="357.0" onMouseClicked="#onSelectCar">
+      <Label fx:id="Price" layoutX="81.0" layoutY="517.0" prefHeight="18.0" prefWidth="45.0" text="\$400.0" />
+      <TableView fx:id="tableView" layoutX="234.0" layoutY="25.0" onKeyPressed="#onSelectCarKey" onKeyReleased="#onSelectCarKey" onMouseClicked="#onSelectCarMouse" onMouseEntered="#onSelectCarMouse" prefHeight="542.0" prefWidth="357.0">
         <columns>
           <TableColumn fx:id="brandColumn" prefWidth="132.0" text="Brand" />
           <TableColumn fx:id="typeColumn" prefWidth="104.79998779296875" text="Type" />
@@ -57,7 +57,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Button fx:id="Rent" layoutX="641.0" layoutY="486.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="201.0" style="-fx-background-color: green; -fx-font-weight: bold;" text="Rent Now" textFill="WHITE" />
+      <Button fx:id="Rent" layoutX="641.0" layoutY="486.0" mnemonicParsing="false" onAction="#onClickRentButton" prefHeight="26.0" prefWidth="201.0" style="-fx-background-color: green; -fx-font-weight: bold;" text="Rent Now" textFill="WHITE" />
       <Text layoutX="610.0" layoutY="422.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Gasoline" />
       <Label fx:id="CarVolume" layoutX="677.0" layoutY="409.0" prefHeight="18.0" prefWidth="69.0" text="Label" />
    </children>
