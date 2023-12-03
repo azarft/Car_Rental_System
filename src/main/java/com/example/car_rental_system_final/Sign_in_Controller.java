@@ -46,11 +46,15 @@ public class Sign_in_Controller {
         user.setUser_phone(LoginField.getText());
         user.setUser_password(PasswordField.getText());
         boolean userExists = UserDB.isUserExist(user);
-
+        boolean adminExists = UserDB.isAdminExist(user);
         if (userExists) {
             System.out.println("User in database");
             navigateToMainPage();
-        } else {
+        } else if(adminExists){
+            System.out.println("Admin in database");
+            navigateToAdminPage();
+        }
+        else {
             System.out.println("Failed to find user");
             // Add code for handling the failure to create a user
         }
@@ -82,6 +86,19 @@ public class Sign_in_Controller {
             // Set the sign-up page as the root of the existing scene
             primaryStage.getScene().setRoot(mainPage);
             primaryStage.setTitle("Main page");
+        } catch (IOException e) {
+            e.printStackTrace(); // Handle the exception appropriately
+        }
+    }
+    private void navigateToAdminPage(){
+        try {
+            // Load the FXML file for the sign-in page
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Admin_Page.fxml"));
+            Parent adminPage = fxmlLoader.load();
+
+            // Set the sign-up page as the root of the existing scene
+            primaryStage.getScene().setRoot(adminPage);
+            primaryStage.setTitle("Admin Page");
         } catch (IOException e) {
             e.printStackTrace(); // Handle the exception appropriately
         }

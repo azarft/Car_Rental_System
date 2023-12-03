@@ -7,7 +7,7 @@ import java.util.List;
 
 public class CarDB {
 
-    private static final String JDBC_URL = "jdbc:postgresql://localhost:5432/carRent";
+    private static final String JDBC_URL = "jdbc:postgresql://localhost:5432/try2";
     private static final String JDBC_USER = "postgres";
     private static final String JDBC_PASSWORD = "1234";
 

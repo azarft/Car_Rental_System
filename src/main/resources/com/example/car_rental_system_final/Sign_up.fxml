@@ -32,8 +32,8 @@
       </AnchorPane>
       <AnchorPane fx:id="signUp2" layoutX="175.0" layoutY="51.0" prefHeight="534.0" prefWidth="549.0" visible="false">
          <children>
-            <TextField fx:id="Passport" layoutX="165.0" layoutY="310.0" prefHeight="26.0" prefWidth="219.0" promptText="Passport" />
-            <TextField fx:id="DriverLicence" layoutX="165.0" layoutY="357.0" prefHeight="26.0" prefWidth="219.0" promptText="Driver Licence" />
+            <TextField fx:id="Passport" layoutX="165.0" layoutY="281.0" prefHeight="26.0" prefWidth="219.0" promptText="Passport" />
+            <TextField fx:id="DriverLicence" layoutX="165.0" layoutY="335.0" prefHeight="26.0" prefWidth="219.0" promptText="Driver Licence" />
             <CheckBox fx:id="A" layoutX="186.0" layoutY="123.0" mnemonicParsing="false" text="A" />
             <CheckBox fx:id="A1" layoutX="232.0" layoutY="123.0" mnemonicParsing="false" text="A1" />
             <CheckBox fx:id="B" layoutX="277.0" layoutY="123.0" mnemonicParsing="false" text="B" />
@@ -50,6 +50,9 @@
             <CheckBox fx:id="T" layoutX="233.0" layoutY="245.0" mnemonicParsing="false" text="T" />
             <Circle fx:id="Page1" fill="WHITE" layoutX="263.0" layoutY="26.0" onMouseClicked="#onClickCirclePage1" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
             <Circle fx:id="Page2" fill="DODGERBLUE" layoutX="286.0" layoutY="26.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
+            <Label layoutX="172.0" layoutY="82.0" text="Category" />
+            <Label fx:id="CautionLabel2" layoutX="164.0" layoutY="307.0" prefHeight="18.0" prefWidth="210.0" textFill="RED" />
+            <Label fx:id="CautionLabel3" layoutX="170.0" layoutY="361.0" prefHeight="18.0" prefWidth="210.0" textFill="RED" />
          </children>
          <opaqueInsets>
             <Insets />

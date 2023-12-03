@@ -56,6 +56,10 @@ public class Sign_up_Controller  {
     @FXML
     private Label CautionLabel;
     @FXML
+    private Label CautionLabel2;
+    @FXML
+    private Label CautionLabel3;
+    @FXML
     private TextField Passport;
     @FXML
     private TextField DriverLicence;
@@ -103,8 +107,20 @@ public class Sign_up_Controller  {
 
         }else if(!PasswordField.getText().equals(ConfirmPassword.getText())){
             CautionLabel.setText("Password and Confirm Password do not match.");
-        } else {
-
+        }else  if (Passport.getText().length() != 14 && DriverLicence.getText().length() != 10 ){
+            CautionLabel.setText("");
+            CautionLabel2.setText("Passport must be 14 characters long");
+            CautionLabel3.setText("Driver's License must be 10 characters long");
+        }else if (DriverLicence.getText().length() != 10){
+            CautionLabel.setText("");
+            CautionLabel2.setText("");
+            CautionLabel3.setText("Driver's License must be 10 characters long");
+        } else if (Passport.getText().length() != 14){
+            CautionLabel.setText("");
+            CautionLabel3.setText("");
+            CautionLabel2.setText("Passport must be 14 characters long");
+        }
+        else {
             CautionLabel.setText("");
             User newUser = new User();
             newUser.setUser_name(NameField.getText());

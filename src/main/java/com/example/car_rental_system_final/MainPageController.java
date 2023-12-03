@@ -256,7 +256,7 @@ public class MainPageController {
             CarPrice.setText(String.valueOf(selectedCar.getPricePerDay() + "$ / day"));
 
             // Add space after ')' in the image file name
-            String imageNameWithSpace = selectedCar.getImagePath().replace(")", ") ");
+            String imageNameWithSpace = selectedCar.getImagePath();
 
             String imagePath = "/images/" + imageNameWithSpace;
             URL imageUrl = getClass().getResource(imagePath);

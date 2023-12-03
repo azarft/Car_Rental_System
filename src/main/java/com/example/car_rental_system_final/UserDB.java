@@ -4,7 +4,7 @@ import java.sql.*;
 import java.sql.DriverManager;
 public class UserDB {
     private static Connection conn;
-    private static final String dbURL = "jdbc:postgresql://localhost:5432/carRent";
+    private static final String dbURL = "jdbc:postgresql://localhost:5432/try2";
     private static final String username = "postgres";
 
     private static final String password = "1234";
@@ -91,6 +91,22 @@ public class UserDB {
 
     public static boolean isUserExist(User user) {
         String sql = "SELECT * FROM \"user\" WHERE (email = ? OR phone = ?) AND password = ?";
+
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, user.getUser_email());
+            stmt.setString(2, user.getUser_phone());
+            stmt.setString(3, user.getUser_password());
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                return rs.next();
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
+    public static boolean isAdminExist(User user) {
+        String sql = "SELECT * FROM administrator WHERE (email = ? OR phone = ?) AND password = ?";
 
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, user.getUser_email());
