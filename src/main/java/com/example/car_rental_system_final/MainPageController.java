@@ -1,5 +1,7 @@
 package com.example.car_rental_system_final;
 
+import javafx.animation.PauseTransition;
+import javafx.animation.ScaleTransition;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
@@ -18,13 +20,25 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.Modality;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
 import javafx.stage.Modality;
+import javafx.util.Duration;
 
 public class MainPageController {
+    private Stage primaryStage;
 
+    // Set the primary stage
+    public void setPrimaryStage(Stage primaryStage) {
+        this.primaryStage = primaryStage;
+    }
+
+    @FXML
+    private Button Logout;
+    @FXML
+    private Label UserName;
     @FXML
     private ImageView Logo;
 
@@ -84,6 +98,11 @@ public class MainPageController {
     private CheckBox Capacity6Person;
     @FXML
     private CheckBox Capacity8PersonOrMore;
+    @FXML
+    private Label historyReservation;
+
+    @FXML
+    private ListView<Reservation> reservationListView;
 
     @FXML
     private Button Filter;
@@ -93,6 +112,8 @@ public class MainPageController {
 
     @FXML
     public void initialize() {
+        UserInfo userInfo = UserInfo.getInstance();
+        UserName.setText(userInfo.getUserName());
         Image image = new Image(getClass().getResource("/images/logo.png").toExternalForm());
         Logo.setImage(image);
 
@@ -122,6 +143,11 @@ public class MainPageController {
         selectCarInTable();
     }
 
+
+    @FXML
+    public void onClickLogoutButton(){
+        navigateToSignIn();
+    }
     @FXML
     public void onClickRentButton(){
         openRentPage();
@@ -246,6 +272,7 @@ public class MainPageController {
 
     private void selectCarInTable(){
         Car selectedCar = tableView.getSelectionModel().getSelectedItem();
+        Car_Rental_System.setCar(selectedCar);
 
         if (selectedCar != null) {
             CaType.setText(selectedCar.getType());
@@ -255,17 +282,26 @@ public class MainPageController {
             CarVolume.setText(String.valueOf(selectedCar.getVolume() + "L"));
             CarPrice.setText(String.valueOf(selectedCar.getPricePerDay() + "$ / day"));
 
-            // Add space after ')' in the image file name
-            String imageNameWithSpace = selectedCar.getImagePath().replace(")", ") ");
 
-            String imagePath = "/images/" + imageNameWithSpace;
+            String imagePath = "/images/" + selectedCar.getImagePath();
             URL imageUrl = getClass().getResource(imagePath);
 
             if (imageUrl != null) {
                 Image carImage = new Image(imageUrl.toExternalForm());
                 CarImage.setImage(carImage);
+                addZoomOnHover(CarImage);
             } else {
                 System.out.println("Image resource not found: " + imagePath);
+            }
+
+            reservationListView.getItems().clear();
+            historyReservation.setVisible(true);
+
+            if (ReservationDB.hasReservation()){
+                historyReservation.setVisible(false);
+                Reservation[] reservations = ReservationDB.getReservationsByUserAndCar();
+                ObservableList<Reservation> observableReservations = FXCollections.observableArrayList(reservations);
+                reservationListView.setItems(observableReservations);
             }
         }
     }
@@ -303,5 +339,55 @@ public class MainPageController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    public void navigateToSignIn(){
+        try {
+            // Load the FXML file for the sign-in page
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Sign_in.fxml"));
+            Parent signInPage = fxmlLoader.load();
+
+            Sign_in_Controller signInController = fxmlLoader.getController();
+            signInController.setPrimaryStage(primaryStage);
+
+            // Set the sign-in page as the root of the existing scene
+            primaryStage.getScene().setRoot(signInPage);
+            primaryStage.setTitle("Sign In Page");
+        } catch (IOException e) {
+            e.printStackTrace(); // Handle the exception appropriately
+        }
+    }
+    public static void addZoomOnHover(ImageView imageView) {
+        // Set up a ScaleTransition for zoom effect
+        ScaleTransition scaleIn = new ScaleTransition(Duration.millis(200), imageView);
+        scaleIn.setToX(1.1);
+        scaleIn.setToY(1.1);
+
+        ScaleTransition scaleOut = new ScaleTransition(Duration.millis(200), imageView);
+        scaleOut.setToX(1.0);
+        scaleOut.setToY(1.0);
+
+        // Set up PauseTransition for a short delay before zoom-out
+        PauseTransition pause = new PauseTransition(Duration.millis(200));
+
+        // Set up event handlers for hover
+        imageView.setOnMouseEntered(event -> {
+            // Play the scale-in transition on hover
+            scaleIn.playFromStart();
+        });
+
+        imageView.setOnMouseExited(event -> {
+            // Stop and reset scale-in transition if running
+            scaleIn.stop();
+            scaleIn.setToX(1.1);
+            scaleIn.setToY(1.1);
+
+            // Set play rate to reverse the scale-out transition
+            scaleOut.setRate(-1);
+
+            // Set up a sequential transition for delay and scale-out
+            scaleOut.setOnFinished(e -> scaleOut.setRate(1));
+            pause.setOnFinished(e -> scaleOut.playFromStart());
+            pause.play();
+        });
     }
 }

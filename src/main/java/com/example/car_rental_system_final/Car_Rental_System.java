@@ -11,6 +11,9 @@ import java.sql.SQLException;
 
 public class Car_Rental_System extends Application {
 
+    private static Car car;
+    private static String errorMessage;
+
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Sign_in.fxml"));
@@ -28,9 +31,32 @@ public class Car_Rental_System extends Application {
         stage.show();
     }
 
+
     public static void main(String[] args) throws SQLException {
         UserDB.ConnectToDatabase();
         launch();
+    }
+
+    public static void updateUserInfo(String userName, int userId) {
+        UserInfo userInfo = UserInfo.getInstance();
+        userInfo.setUserName(userName);
+        userInfo.setUserId(userId);
+    }
+
+    public static Car getCar() {
+        return car;
+    }
+
+    public static void setCar(Car car1) {
+        car = car1;
+    }
+
+    public static String getErrorMessage() {
+        return errorMessage;
+    }
+
+    public static void setErrorMessage(String errorMessage1) {
+        errorMessage = errorMessage1;
     }
 }
 

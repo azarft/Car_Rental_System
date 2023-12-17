@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
@@ -14,6 +16,8 @@ import java.sql.Date;
 
 
 public class Sign_up_Controller  {
+    @FXML
+    private ImageView Car;
 
     @FXML
     private AnchorPane signUp1;
@@ -89,6 +93,11 @@ public class Sign_up_Controller  {
     private CheckBox T;
 
     @FXML
+    public void initialize() {
+        Image image = new Image(getClass().getResource("/images/car2.png").toExternalForm());
+        Car.setImage(image);
+    }
+        @FXML
     public void onClickSignUpButton() {
         if (NameField.getText().isEmpty() ||
                 EmailField.getText().isEmpty() ||
@@ -116,6 +125,7 @@ public class Sign_up_Controller  {
             newUser.setUser_licenseNumber(DriverLicence.getText());
             newUser.setUser_passportNumber(Passport.getText());
             newUser.setUser_birthday(Date.valueOf(BirthdayPick.getValue()));
+            Car_Rental_System.updateUserInfo(newUser.getUser_name() + " " + newUser.getUser_surname(),newUser.getUser_id());
             String category = "";
             if (A.isSelected()) category += "A ";
             if (A1.isSelected()) category += "A1 ";
@@ -193,6 +203,9 @@ public class Sign_up_Controller  {
             // Load the FXML file for the sign-in page
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Main_Page.fxml"));
             Parent mainPage = fxmlLoader.load();
+
+            MainPageController mainPageController = fxmlLoader.getController();
+            mainPageController.setPrimaryStage(primaryStage);
 
             // Set the sign-up page as the root of the existing scene
             primaryStage.getScene().setRoot(mainPage);

@@ -1,5 +1,7 @@
 package com.example.car_rental_system_final;
 
+import javafx.animation.PauseTransition;
+import javafx.animation.ScaleTransition;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
@@ -29,6 +31,7 @@ import java.nio.file.StandardCopyOption;
 import java.sql.SQLException;
 import java.util.List;
 import javafx.stage.Modality;
+import javafx.util.Duration;
 
 public class AdminPageController {
     private Stage primaryStage;
@@ -37,6 +40,11 @@ public class AdminPageController {
     public void setPrimaryStage(Stage primaryStage) {
         this.primaryStage = primaryStage;
     }
+
+    @FXML
+    private Button Logout;
+    @FXML
+    private Label UserName;
 
     @FXML
     private ImageView Logo;
@@ -115,6 +123,8 @@ public class AdminPageController {
 
     @FXML
     public void initialize() {
+        UserInfo userInfo = UserInfo.getInstance();
+        UserName.setText(userInfo.getUserName());
         Image image = new Image(getClass().getResource("/images/logo.png").toExternalForm());
         Logo.setImage(image);
 
@@ -142,6 +152,10 @@ public class AdminPageController {
         tableView.getSelectionModel().selectFirst();
         // Show information for the selected car
         selectCarInTable();
+    }
+    @FXML
+    public void onClickLogoutButton(){
+        navigateToSignIn();
     }
 
     @FXML
@@ -408,17 +422,15 @@ public class AdminPageController {
                 CarPrice.setText(String.valueOf(selectedCar.getPricePerDay()));
                 imgName.setText(selectedCar.getImagePath());
 
-                // Add space after ')' in the image file name
-                String imageNameWithSpace = selectedCar.getImagePath().replace(")", ") ");
-
                 // Construct the file path to the image
-                String imagePath = "src/main/resources/images/" + imageNameWithSpace;
+                String imagePath = "src/main/resources/images/" + selectedCar.getImagePath();
 
                 // Load image directly from file
                 File file = new File(imagePath);
                 Image carImage = new Image(file.toURI().toString());
                 CarImage.setImage(carImage);
             }
+            addZoomOnHover(CarImage);
         } else {
             // Clear all text fields and the image when no item is selected
             CaType.clear();
@@ -493,5 +505,56 @@ public class AdminPageController {
             // Handle the case where the file does not exist
             System.out.println("Image file does not exist: " + imagePath);
         }
+    }
+
+    public void navigateToSignIn(){
+        try {
+            // Load the FXML file for the sign-in page
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Sign_in.fxml"));
+            Parent signInPage = fxmlLoader.load();
+
+            Sign_in_Controller signInController = fxmlLoader.getController();
+            signInController.setPrimaryStage(primaryStage);
+
+            // Set the sign-in page as the root of the existing scene
+            primaryStage.getScene().setRoot(signInPage);
+            primaryStage.setTitle("Sign In Page");
+        } catch (IOException e) {
+            e.printStackTrace(); // Handle the exception appropriately
+        }
+    }
+    public static void addZoomOnHover(ImageView imageView) {
+        // Set up a ScaleTransition for zoom effect
+        ScaleTransition scaleIn = new ScaleTransition(Duration.millis(200), imageView);
+        scaleIn.setToX(1.1);
+        scaleIn.setToY(1.1);
+
+        ScaleTransition scaleOut = new ScaleTransition(Duration.millis(200), imageView);
+        scaleOut.setToX(1.0);
+        scaleOut.setToY(1.0);
+
+        // Set up PauseTransition for a short delay before zoom-out
+        PauseTransition pause = new PauseTransition(Duration.millis(200));
+
+        // Set up event handlers for hover
+        imageView.setOnMouseEntered(event -> {
+            // Play the scale-in transition on hover
+            scaleIn.playFromStart();
+        });
+
+        imageView.setOnMouseExited(event -> {
+            // Stop and reset scale-in transition if running
+            scaleIn.stop();
+            scaleIn.setToX(1.1);
+            scaleIn.setToY(1.1);
+
+            // Set play rate to reverse the scale-out transition
+            scaleOut.setRate(-1);
+
+            // Set up a sequential transition for delay and scale-out
+            scaleOut.setOnFinished(e -> scaleOut.setRate(1));
+            pause.setOnFinished(e -> scaleOut.playFromStart());
+            pause.play();
+        });
     }
 }

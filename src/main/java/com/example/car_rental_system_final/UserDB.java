@@ -4,10 +4,9 @@ import java.sql.*;
 import java.sql.DriverManager;
 public class UserDB {
     private static Connection conn;
-    private static final String dbURL = "jdbc:postgresql://localhost:5432/carRent";
-    private static final String username = "postgres";
-
-    private static final String password = "1234";
+    private static final String dbURL = "jdbc:postgresql://localhost:5432/postgres";
+    private static final String username = "azar";
+    private static final String password = "azar";
 
     public static String ConnectToDatabase() {
 
@@ -101,8 +100,97 @@ public class UserDB {
                 return rs.next();
             }
         } catch (SQLException e) {
+            System.out.println("User does not exist");
             System.out.println(e.getMessage());
             return false;
+        }
+    }
+
+
+
+
+    public static User getUserInfo(User user) {
+        String sql = "SELECT * FROM \"user\" WHERE (email = ? OR phone = ?) AND password = ?";
+
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, user.getUser_email());
+            stmt.setString(2, user.getUser_phone());
+            stmt.setString(3, user.getUser_password());
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    // Populate the User object with information from the database
+                    user.setUser_id(rs.getInt("id"));
+                    user.setUser_name(rs.getString("name"));
+                    user.setUser_surname(rs.getString("surname"));
+                    user.setUser_email(rs.getString("email"));
+                    user.setUser_phone(rs.getString("phone"));
+                    user.setUser_address(rs.getString("address"));
+                    user.setUser_password(rs.getString("password"));
+                    user.setUser_birthday(rs.getDate("birthday"));
+
+                    // Add other fields as needed
+
+                    return user;
+                } else {
+                    // If no matching user is found, return null
+                    return null;
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+    public static boolean isAdminExist(User user) {
+        String sql = "SELECT * FROM administrator WHERE (email = ? OR phone = ?) AND password = ?";
+
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, user.getUser_email());
+            stmt.setString(2, user.getUser_phone());
+            stmt.setString(3, user.getUser_password());
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                return rs.next();
+            }
+        } catch (SQLException e) {
+            System.out.println("Admin does not exist");
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
+
+    public static User getAdminInfo(User user) {
+        String sql = "SELECT * FROM administrator WHERE (email = ? OR phone = ?) AND password = ?";
+
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, user.getUser_email());
+            stmt.setString(2, user.getUser_phone());
+            stmt.setString(3, user.getUser_password());
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    // Populate the User object with information from the database
+                    user.setUser_id(rs.getInt("id"));
+                    user.setUser_name(rs.getString("name"));
+                    user.setUser_surname(rs.getString("surname"));
+                    user.setUser_email(rs.getString("email"));
+                    user.setUser_phone(rs.getString("phone"));
+                    user.setUser_password(rs.getString("password"));
+                    user.setUser_licenseCategoria(rs.getString("position"));
+
+                    // Add other fields as needed
+
+                    return user;
+                } else {
+                    // If no matching admin is found, return null
+                    return null;
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return null;
         }
     }
 }

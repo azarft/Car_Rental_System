@@ -72,18 +72,4 @@ public class Car {
     public void setCapacity(int capacity) {
         this.capacity = capacity;
     }
-
-    @Override
-    public String toString() {
-        String spaceForBrand = "";
-        for(int i = 0; i < 20 - this.brand.length(); i++){
-            spaceForBrand += " ";
-        }
-
-        String spaceForType = "";
-        for(int i = 0; i < 20 - this.type.length(); i++){
-            spaceForType += " ";
-        }
-        return this.brand + spaceForBrand + " " + this.type + spaceForType + " " + this.pricePerDay + "$";
-    }
 }

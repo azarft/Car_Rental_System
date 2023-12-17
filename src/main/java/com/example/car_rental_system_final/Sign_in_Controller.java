@@ -7,12 +7,18 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class Sign_in_Controller {
+    @FXML
+    private ImageView Logo;
 
+    @FXML
+    private ImageView Car;
     @FXML
     private Button signIn;
 
@@ -40,16 +46,33 @@ public class Sign_in_Controller {
     private Button SignIn;
 
     @FXML
+    public void initialize(){
+        Image image = new Image(getClass().getResource("/images/car.png").toExternalForm());
+        Car.setImage(image);
+
+        Image image1 = new Image(getClass().getResource("/images/logo.png").toExternalForm());
+        Logo.setImage(image1);
+    }
+
+    @FXML
     private void onClickButtonSignIn(){
         User user = new User();
         user.setUser_email(LoginField.getText());
         user.setUser_phone(LoginField.getText());
         user.setUser_password(PasswordField.getText());
         boolean userExists = UserDB.isUserExist(user);
+        boolean adminExists = UserDB.isAdminExist(user);
 
         if (userExists) {
+            user = UserDB.getUserInfo(user);
+            Car_Rental_System.updateUserInfo(user.getUser_name() + " " + user.getUser_surname(),user.getUser_id());
             System.out.println("User in database");
             navigateToMainPage();
+        } else if (adminExists) {
+            user = UserDB.getAdminInfo(user);
+            Car_Rental_System.updateUserInfo(user.getUser_name() + " " + user.getUser_surname(),user.getUser_id());
+            System.out.println("Admin in database");
+            navigateToAdminPage();
         } else {
             System.out.println("Failed to find user");
             // Add code for handling the failure to create a user
@@ -79,9 +102,29 @@ public class Sign_in_Controller {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Main_Page.fxml"));
             Parent mainPage = fxmlLoader.load();
 
+            MainPageController mainPageController = fxmlLoader.getController();
+            mainPageController.setPrimaryStage(primaryStage);
+
             // Set the sign-up page as the root of the existing scene
             primaryStage.getScene().setRoot(mainPage);
             primaryStage.setTitle("Main page");
+        } catch (IOException e) {
+            e.printStackTrace(); // Handle the exception appropriately
+        }
+    }
+
+    private void navigateToAdminPage(){
+        try {
+            // Load the FXML file for the sign-in page
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Admin_Page.fxml"));
+            Parent mainPage = fxmlLoader.load();
+
+            AdminPageController adminPageController = fxmlLoader.getController();
+            adminPageController.setPrimaryStage(primaryStage);
+
+            // Set the sign-up page as the root of the existing scene
+            primaryStage.getScene().setRoot(mainPage);
+            primaryStage.setTitle("Admin page");
         } catch (IOException e) {
             e.printStackTrace(); // Handle the exception appropriately
         }
