@@ -35,8 +35,10 @@ The Car Rental System is a JavaFX-based application designed to facilitate the p
 ## Screenshots
 ![User e-r model](Screenshots/user.png)
 *User e-r model*
+
 ![Administrator e-r model](Screenshots/administrator.png)
 *Administrator e-r model*
+
 ![Screenshot 1](Screenshots/screenshot1.png)
 *Login page*
 
