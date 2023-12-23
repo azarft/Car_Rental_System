@@ -33,12 +33,6 @@ The Car Rental System is a JavaFX-based application designed to facilitate the p
 - **Malikov Adilet:** Quality assurance, testing, and documentation.
 
 ## Screenshots
-![User e-r model](Screenshots/user.png)
-*User e-r model*
-
-![Administrator e-r model](Screenshots/administrator.png)
-*Administrator e-r model*
-
 ![Screenshot 1](Screenshots/screenshot1.png)
 *Login page*
 
